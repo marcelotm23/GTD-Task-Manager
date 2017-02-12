@@ -13,6 +13,7 @@ public class CerrarSesionAction implements Accion {
 		String resultado="EXITO";
 		
 		HttpSession session=request.getSession();
+		if(session!=null){
 			session.invalidate();
 		}else{
 			resultado="FRACASO";
