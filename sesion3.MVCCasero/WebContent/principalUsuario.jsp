@@ -58,6 +58,8 @@
 		</table>
 	</form>
 	<br />
+	<a id="mostrarTareas_link_id" href="mostrarTareas">Mostrar tareas</a>
+	<br />
 	<a id="cerrarSesion_link_id" href="cerrarSesion">Cerrar sesión</a>
 
 	<%@ include file="pieDePagina.jsp"%>
