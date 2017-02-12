@@ -28,17 +28,17 @@
 			</tr>
 			<tr>
 				<td>Contraseña antigua:</td>
-				<td id="contrasenaAntigua"><input type="text"
+				<td id="contrasenaAntigua"><input type="password"
 					name="contrasenaAntigua" size="20" /></td>
 			</tr>
 			<tr>
 				<td>Contraseña nueva:</td>
-				<td id="contrasenaNueva"><input type="text"
+				<td id="contrasenaNueva"><input type="password"
 					name="contrasenaNueva" size="20" /></td>
 			</tr>
 			<tr>
 				<td>Comprobación de contraseña:</td>
-				<td id="contrasenaNuevaAgain"><input type="text"
+				<td id="contrasenaNuevaAgain"><input type="password"
 					name="contrasenaNuevaAgain" size="20" /><input type="submit"
 					value="Modificar"></td>
 			</tr>
