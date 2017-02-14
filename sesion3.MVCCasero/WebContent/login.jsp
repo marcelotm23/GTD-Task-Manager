@@ -21,6 +21,8 @@
       </table>
    </form>
    <a id="listarCategorias_link_id" href="listarCategorias">Lista de categorias</a>
+   <p>¿No tienes cuenta?. Crea una<p>
+   <a id="crearCuenta_link_id" href="crearCuenta">Crear cuenta</a>
    <%@ include file="pieDePagina.jsp" %>
 </body>
 </html>
