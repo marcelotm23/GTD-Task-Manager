@@ -18,13 +18,14 @@ public class ValidarseAction implements Accion {
 		
 		String resultado="EXITO";
 		String nombreUsuario=request.getParameter("nombreUsuario");
+		String password=request.getParameter("password");
 		HttpSession session=request.getSession();
 		if (session.getAttribute("user")==null) {
 			UserService userService = Services.getUserService();
 			User userByLogin=null;
 			try {
 				userByLogin = userService.findLoggableUser(nombreUsuario, 
-						nombreUsuario+"123");
+						password);
 			} catch (BusinessException b) {
 				session.invalidate();
 				Log.debug("Algo ha ocurrido intentando iniciar sesión [%s]: %s", 
@@ -45,7 +46,7 @@ public class ValidarseAction implements Accion {
 				session.invalidate();
 				Log.info("El usuario [%s] no está registrado",nombreUsuario);
 				request.setAttribute("mensajeParaElUsuario", "El usuario ["+
-						nombreUsuario+"] no está registrado");
+						nombreUsuario+"] no está registrado o la constraseña no es la correcta");
 				resultado="FRACASO";
 			}
 		}
