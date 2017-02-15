@@ -46,15 +46,17 @@ public class ValidarseAction implements Accion {
 				session.invalidate();
 				Log.info("El usuario [%s] no está registrado",nombreUsuario);
 				request.setAttribute("mensajeParaElUsuario", "El usuario ["+
-						nombreUsuario+"] no está registrado o la constraseña no es la correcta");
+						nombreUsuario+"] no está registrado o la constraseña no "
+								+ "es la correcta");
 				resultado="FRACASO";
 			}
 		}
 		else
 			if (!nombreUsuario.equals(session.getAttribute("user"))) {
-				Log.info("Se ha intentado iniciar sesión como [%s] teniendo la sesión iniciada como [%s]",
+				Log.info("Se ha intentado iniciar sesión como [%s] teniendo la "
+						+ "sesión iniciada como [%s]",
 						nombreUsuario,((User)session.getAttribute("user")).getLogin());
-				request.setAttribute("mensajeParaElUsuario", 
+			request.setAttribute("mensajeParaElUsuario", 
 						"Se ha intentado iniciar sesión como ["+nombreUsuario+
 						"] teniendo la sesión iniciada como ["+
 						((User)session.getAttribute("user")).getLogin()+"]");

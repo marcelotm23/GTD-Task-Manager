@@ -167,7 +167,7 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resultadoYJSP.put("FRACASO", "/login.jsp");
 		opcionResultadoYJSP.put("listarCategorias", resultadoYJSP);
 		resultadoYJSP = new HashMap<String, String>();
-		resultadoYJSP.put("EXITO", "/crearCuenta.jsp");
+		resultadoYJSP.put("EXITO", "/login.jsp");
 		resultadoYJSP.put("FRACASO", "/crearCuenta.jsp");
 		opcionResultadoYJSP.put("crearCuenta", resultadoYJSP);
 		resultadoYJSP = new HashMap<String, String>();

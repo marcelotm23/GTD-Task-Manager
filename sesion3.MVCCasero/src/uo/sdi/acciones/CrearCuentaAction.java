@@ -23,28 +23,34 @@ public class CrearCuentaAction implements Accion {
 		String email = request.getParameter("email");
 		String contrasena = request.getParameter("contrasena");
 		String contrasenaAgain = request.getParameter("contrasenaAgain");
-		if(checkData(email, contrasena, contrasenaAgain)){
-			 UserService userService = Services.getUserService();
-			 User newUser=new User();
-			 newUser.setLogin(nombreUsuario);
-			 newUser.setStatus(UserStatus.ENABLED);
-			 newUser.setEmail(email);
-			 newUser.setPassword(contrasena);
-			 newUser.setIsAdmin(false);
-			 try {
+		try {
+			if (checkData(email, contrasena, contrasenaAgain)) {
+				UserService userService = Services.getUserService();
+				User newUser = new User();
+				newUser.setLogin(nombreUsuario);
+				newUser.setStatus(UserStatus.ENABLED);
+				newUser.setEmail(email);
+				newUser.setPassword(contrasena);
+				newUser.setIsAdmin(false);
+
 				userService.registerUser(newUser);
-				Log.debug("El usuario [%s] ha sido registrado", 
-						nombreUsuario);
-			} catch (BusinessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				Log.debug("El usuario [%s] ha sido registrado", nombreUsuario);
+				request.setAttribute("mensajeParaElUsuario",
+						"Se ha registrado correctamente. Puede proceder a logearse.");
+
 			}
+		} catch (BusinessException e) {
+			Log.debug(
+					"El usuario [%s] no ha sido registrado, por el motivo: [%s]",
+					nombreUsuario, e.getMessage());
+			request.setAttribute("mensajeParaElUsuario", e.getMessage());
+			resultado="FRACASO";
 		}
 		return resultado;
 	}
 
 	private boolean checkData(String email, String contrasena,
-			String contrasenaAgain) {
+			String contrasenaAgain) throws BusinessException {
 		return Checks.isValidEmailAddress(email)
 				&& Checks.isValidPassword(contrasena)
 				&& Checks.isSamePassword(contrasena, contrasenaAgain);

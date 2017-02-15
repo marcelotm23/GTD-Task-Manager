@@ -36,7 +36,7 @@
 		</table>
 	</form>
 	<br />
-	<a id="cerrarSesion_link_id" href="cerrarSesion">Atrás</a>
+	<a id="atras_link_id" href="login.jsp">Atrás</a>
 
 	<%@ include file="pieDePagina.jsp"%>
 </body>
