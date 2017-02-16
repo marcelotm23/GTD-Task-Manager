@@ -59,6 +59,10 @@
 	</form>
 	<br />
 	<a id="mostrarTareas_link_id" href="mostrarTareas">Mostrar tareas</a>
+	<c:if test="${ user.getIsAdmin() }">
+		<br/>
+		<a id="listarUsuarios_link_id" href="listarUsuarios">Lista usuarios</a>
+	</c:if>
 	<br />
 	<a id="cerrarSesion_link_id" href="cerrarSesion">Cerrar sesión</a>
 
