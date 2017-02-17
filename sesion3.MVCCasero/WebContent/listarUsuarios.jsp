@@ -13,19 +13,29 @@
 				<th>Nombre</th>
 				<th>Email</th>
 				<th>Status</th>
-				<th>Habilitar</th>
+				<th>Habilitar/Deshabilitar</th>
 			</tr>
 			<c:forEach var="entry" items="${listaUsuarios}" varStatus="i">
 				<tr id="item_${i.index}">
 					<td>${entry.login}</td>
 					<td>${entry.email}</td>
 					<td>${entry.status}</td>
-					<td><input name="cb_${i.index}" type="checkbox" /></td>
+					<c:if test="${entry.status == \"ENABLED\"}">
+						<td><input name="cb_${i.index}" type="checkbox"
+							checked="checked" /></td>
+					</c:if>
+					<c:if test="${entry.status == \"DISABLED\"}">
+						<td><input name="cb_${i.index}" type="checkbox" /></td>
+					</c:if>
 				</tr>
 			</c:forEach>
-			<tr><td><input type="submit" align="right" value="Modificar usuarios"></td></tr>
+			<tr>
+				<td><input type="submit" align="right"
+					value="Modificar usuarios"></td>
+			</tr>
 		</table>
 	</form>
+	<a id="atras_link_id" href="login.jsp">Atrás</a>
 	<%@ include file="pieDePagina.jsp"%>
 </body>
 </html>

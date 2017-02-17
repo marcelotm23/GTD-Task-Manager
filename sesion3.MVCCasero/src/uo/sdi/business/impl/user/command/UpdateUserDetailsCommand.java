@@ -22,7 +22,8 @@ public class UpdateUserDetailsCommand implements Command<Void> {
 		User previous = uDao.findById( user.getId() );
 
 		checkUserExist( previous );
-		checkStatusIsNotChanged( previous, user );
+		if(user.getIsAdmin())
+			checkStatusIsNotChanged( previous, user );
 		checkIsAdminNotChanged( previous, user );
 		UserCheck.isValidEmailSyntax( user ); 
 		UserCheck.minLoginLength( user );
@@ -49,7 +50,7 @@ public class UpdateUserDetailsCommand implements Command<Void> {
 	private void checkStatusIsNotChanged(User previous, User current)
 			throws BusinessException {
 		BusinessCheck.isTrue( statusIsNotChanged(previous, current), 
-				"Only the admin can change the satus");
+				"No puedes cambiar el status de un admin");
 	}
 
 	private boolean statusIsNotChanged(User previous, User current) {
