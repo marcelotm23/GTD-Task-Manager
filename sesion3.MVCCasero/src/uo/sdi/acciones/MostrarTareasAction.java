@@ -22,13 +22,18 @@ public class MostrarTareasAction implements Accion{
 		String resultado="EXITO";
 		
 		List<Task> listaTareas;
+		List<Category> listaCategorias;
 		
 		try {
 			HttpSession session=request.getSession();
 			User user=(User) session.getAttribute("user");
+			//Tareas
 			TaskService taskService = Services.getTaskService();
 			listaTareas=taskService.findTodayTasksByUserId(user.getId());
+			//Categorias
+			listaCategorias=taskService.findCategoriesByUserId(user.getId());
 			request.setAttribute("listaTareas", listaTareas);
+			request.setAttribute("listaCategorias", listaCategorias);
 			Log.debug("Obtenida lista de tareas conteniendo [%d] tareas", 
 					listaTareas.size());
 		}

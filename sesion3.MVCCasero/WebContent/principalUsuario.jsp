@@ -58,7 +58,9 @@
 		</table>
 	</form>
 	<br />
-	<a id="mostrarTareas_link_id" href="mostrarTareas">Mostrar tareas</a>
+	<c:if test="${ !user.getIsAdmin() }">
+		<a id="mostrarTareas_link_id" href="mostrarTareas">Mostrar tareas</a>
+	</c:if>
 	<c:if test="${ user.getIsAdmin() }">
 		<br/>
 		<a id="listarUsuarios_link_id" href="listarUsuarios">Lista usuarios</a>
