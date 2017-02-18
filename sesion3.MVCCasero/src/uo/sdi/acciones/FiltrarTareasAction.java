@@ -31,16 +31,31 @@ public class FiltrarTareasAction implements Accion{
 			TaskService taskService = Services.getTaskService();
 			
 			String idOpcion=request.getParameter("idOpcion");
+			if(idOpcion==null){idOpcion="inbox";}
+			boolean mostrarFinalizadas=(request.getParameter("cb_mostrarFinalizadas")
+					!= null) ;
 			if(idOpcion.compareTo("inbox")==0){
 				listaTareas=taskService.findInboxTasksByUserId(user.getId());
+				if (mostrarFinalizadas) {
+					listaTareas.addAll(taskService.findFinishedInboxTasksByUserId(user.getId()));
+				}else{
+					listaTareas.removeAll(taskService.findFinishedInboxTasksByUserId(user.getId()));
+				}
 			}else if(idOpcion.compareTo("today")==0){
 				listaTareas=taskService.findTodayTasksByUserId(user.getId());
 			}else if(idOpcion.compareTo("week")==0){
 				listaTareas=taskService.findWeekTasksByUserId(user.getId());
 			}else{
 				Long idCategoria= Long.parseLong(idOpcion);
-				listaTareas=taskService.findFinishedTasksByCategoryId(idCategoria);
+				listaTareas=taskService.findTasksByCategoryId(idCategoria);
+				if(mostrarFinalizadas){
+					listaTareas.addAll(taskService.findFinishedTasksByCategoryId(idCategoria));
+				}else{
+					listaTareas.removeAll(taskService.findFinishedTasksByCategoryId(idCategoria));
+				}
 			}
+			
+			request.setAttribute("idOpcion", idOpcion);
 			request.setAttribute("listaTareas", listaTareas);
 			
 			//Categorias

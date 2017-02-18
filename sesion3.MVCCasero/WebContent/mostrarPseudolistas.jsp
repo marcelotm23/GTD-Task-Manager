@@ -6,6 +6,7 @@
 <head>
 <style>
 div#menu {float:left;}
+div#filtro {float: right;};
 </style>
 <title>TaskManager - Pseudolistas</title>
 </head>
@@ -16,8 +17,19 @@ div#menu {float:left;}
 	 <%@ include file="pseudolistasUsuario.jsp" %>
   </ul>
 </div>
+<c:if test="${idOpcion!=\"week\" && idOpcion!=\"today\"}">
+	<div id="filtro">
+		<h2>Filtros</h2>
+		<br>
+		<form action="filtrarTareas?idOpcion=${idOpcion}" method="POST">
+			<input name="cb_mostrarFinalizadas" type="checkbox">
+			Mostrar tareas finalizadas<br>
+			<input type="submit" align="right" value="Aplicar">
+		</form>
+	</div>
+</c:if>
 <c:choose>
-	<c:when test="${!empty listaCategorias}">
+	<c:when test="${!empty listaTareas}">
 		<%@ include file="mostrarTareas.jsp" %>
 	</c:when>
 	<c:otherwise>

@@ -59,7 +59,7 @@
 	</form>
 	<br />
 	<c:if test="${ !user.getIsAdmin() }">
-		<a id="mostrarTareas_link_id" href="mostrarTareas">Mostrar tareas</a>
+		<a id="filtrarTareas_link_id" href="filtrarTareas">Mostrar tareas</a>
 	</c:if>
 	<c:if test="${ user.getIsAdmin() }">
 		<br/>

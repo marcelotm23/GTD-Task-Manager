@@ -14,11 +14,14 @@
 				<td>${entry.title}</td>
 				<%
 					Date plannedDate=(Date)pageContext.getAttribute("plannedDate");
+				if(plannedDate!=null){	
 					if(DateUtil.isBefore(plannedDate, DateUtil.today())){
-						out.write("<td bgcolor=\"#FF0000\">"+plannedDate+"</td>");
-					}else{
-						out.write("<td>"+plannedDate+"</td>");
-				} %>
+							out.write("<td bgcolor=\"#FF0000\">"+plannedDate+"</td>");
+						}else{
+							out.write("<td>"+plannedDate+"</td>");
+					}
+				}else{out.write("<td>"+"</td>");}
+				%>
 			</tr>
 		</c:forEach>
 	</table>
