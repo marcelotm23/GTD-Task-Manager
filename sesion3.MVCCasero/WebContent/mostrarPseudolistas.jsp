@@ -4,6 +4,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
+<style>
+div#menu {float:left;}
+</style>
 <title>TaskManager - Pseudolistas</title>
 </head>
 <body>
@@ -15,10 +18,10 @@
 </div>
 <c:choose>
 	<c:when test="${!empty listaCategorias}">
-	<%@ include file="mostrarTareas.jsp" %>
+		<%@ include file="mostrarTareas.jsp" %>
 	</c:when>
 	<c:otherwise>
-	<h4>No se han encontrado tareas</h4>
+		<h4>No se han encontrado tareas</h4>
 	</c:otherwise>
 </c:choose>
 

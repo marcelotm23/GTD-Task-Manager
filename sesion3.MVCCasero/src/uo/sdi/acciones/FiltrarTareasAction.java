@@ -14,7 +14,7 @@ import uo.sdi.dto.Task;
 import uo.sdi.dto.User;
 import alb.util.log.Log;
 
-public class MostrarTareasAction implements Accion{
+public class FiltrarTareasAction implements Accion{
 
 	@Override
 	public String execute(HttpServletRequest request,
@@ -29,10 +29,22 @@ public class MostrarTareasAction implements Accion{
 			User user=(User) session.getAttribute("user");
 			//Tareas
 			TaskService taskService = Services.getTaskService();
-			listaTareas=taskService.findFinishedInboxTasksByUserId(user.getId());
+			
+			String idOpcion=request.getParameter("idOpcion");
+			if(idOpcion.compareTo("inbox")==0){
+				listaTareas=taskService.findInboxTasksByUserId(user.getId());
+			}else if(idOpcion.compareTo("today")==0){
+				listaTareas=taskService.findTodayTasksByUserId(user.getId());
+			}else if(idOpcion.compareTo("week")==0){
+				listaTareas=taskService.findWeekTasksByUserId(user.getId());
+			}else{
+				Long idCategoria= Long.parseLong(idOpcion);
+				listaTareas=taskService.findFinishedTasksByCategoryId(idCategoria);
+			}
+			request.setAttribute("listaTareas", listaTareas);
+			
 			//Categorias
 			listaCategorias=taskService.findCategoriesByUserId(user.getId());
-			request.setAttribute("listaTareas", listaTareas);
 			request.setAttribute("listaCategorias", listaCategorias);
 			Log.debug("Obtenida lista de tareas conteniendo [%d] tareas", 
 					listaTareas.size());
