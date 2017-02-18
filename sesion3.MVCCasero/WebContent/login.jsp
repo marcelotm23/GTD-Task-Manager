@@ -7,7 +7,7 @@
  	<center><h1>Inicie sesión</h1></center>
  	<hr><br>
  	<table align="center">
-    	<tr> 
+    	<tr>
     		<td align="right">Su identificador de usuario</td>
 	    	<td><input type="text" name="nombreUsuario" align="left" size="15"></td>
       	</tr>

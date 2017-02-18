@@ -35,7 +35,7 @@
 			</tr>
 		</table>
 	</form>
-	<a id="atras_link_id" href="login.jsp">Atrás</a>
+	<a id="atras_link_id" href="principalUsuario.jsp">Atrás</a>
 	<%@ include file="pieDePagina.jsp"%>
 </body>
 </html>
