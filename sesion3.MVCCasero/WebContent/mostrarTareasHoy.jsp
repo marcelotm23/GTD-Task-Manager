@@ -1,6 +1,7 @@
 <%@ page import="java.util.Date, alb.util.date.DateUtil" contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<c:forEach var="category" items="${listaCategorias}" varStatus="i">
+	<h3>${category.name}</h3>
 	<table border="1" align="center">
 			<tr>
 				<th>Titulo</th>
@@ -10,6 +11,7 @@
 				<th>Editar</th>
 			</tr>
 		<c:forEach var="entry" items="${listaTareas}" varStatus="i">
+			<c:if test="${category.id==entry.categoryId}">
 			<c:set var="plannedDate" value="${entry.planned}"/>
 			<c:set var="finishedDate" value="${entry.finished}"/>
 			<tr id="item_${i.index}">
@@ -33,5 +35,8 @@
 				<td><a id="editarTarea" href="leerTarea?idTarea=${entry.id}">Editar</a></td>
 				
 			</tr>
+			</c:if>
 		</c:forEach>
 	</table>
+	
+</c:forEach>

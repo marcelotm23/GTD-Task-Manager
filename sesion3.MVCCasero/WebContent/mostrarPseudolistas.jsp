@@ -50,7 +50,12 @@ div#filtro {
 	</c:if>
 	<c:choose>
 		<c:when test="${!empty listaTareas}">
-			<%@ include file="mostrarTareas.jsp"%>
+			<c:if test="${idOpcion==\"today\"}">
+				<%@ include file="mostrarTareasHoy.jsp"%>
+			</c:if>
+			<c:if test="${idOpcion!=\"today\"}">
+				<%@ include file="mostrarTareas.jsp"%>
+			</c:if>
 		</c:when>
 		<c:otherwise>
 			<h4 align="center">No se han encontrado tareas</h4>
