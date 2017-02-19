@@ -57,8 +57,6 @@ public class AnnadirTareaAction implements Accion {
 					"Ha ocurrido un error en la creación de la tarea, inténtelo de nuevo.");
 			resultado = "FRACASO";
 		}
-		FiltrarTareasAction f = new FiltrarTareasAction();
-		f.execute(request, response);
 
 		return resultado;
 	}

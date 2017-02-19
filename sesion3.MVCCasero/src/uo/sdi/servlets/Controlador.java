@@ -196,6 +196,9 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resultadoYJSP.put("FRACASO", "/mostrarPseudolistas.jsp");
 		opcionResultadoYJSP.put("filtrarTareas", resultadoYJSP);
 		// Añadir tareas
+		resultadoYJSP = new HashMap<String, String>();
+		resultadoYJSP.put("EXITO", "/filtrarTareas");
+		resultadoYJSP.put("FRACASO", "/filtrarTareas");
 		opcionResultadoYJSP.put("añadirTarea", resultadoYJSP);
 		//Leer tarea
 		resultadoYJSP = new HashMap<String, String>();
