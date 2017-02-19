@@ -140,6 +140,8 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		mapaRegistrado.put("añadirTarea", new AnnadirTareaAction());
 		mapaRegistrado.put("editarTarea", new EditarTareaAction());
 		mapaRegistrado.put("crearCategoria", new CrearCategoriaAction());
+		mapaRegistrado.put("finalizarTarea", new FinalizarTareaAction());
+		mapaRegistrado.put("auxiliarListaTareas", new AuxiliarAction());
 		mapaDeAcciones.put("USUARIO", mapaRegistrado);
 		// Admin
 		Map<String, Accion> mapaAdmin = new HashMap<String, Accion>();
@@ -199,8 +201,8 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		opcionResultadoYJSP.put("filtrarTareas", resultadoYJSP);
 		// Añadir tareas
 		resultadoYJSP = new HashMap<String, String>();
-		resultadoYJSP.put("EXITO", "/filtrarTareas");
-		resultadoYJSP.put("FRACASO", "/filtrarTareas");
+		resultadoYJSP.put("EXITO", "/confirmacionFinalizarTarea.jsp");
+		resultadoYJSP.put("FRACASO", "/confirmacionFinalizarTarea.jsp");
 		opcionResultadoYJSP.put("añadirTarea", resultadoYJSP);
 		//Leer tarea
 		resultadoYJSP = new HashMap<String, String>();
@@ -217,6 +219,15 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resultadoYJSP.put("EXITO", "/mostrarPseudolistas.jsp");
 		resultadoYJSP.put("FRACASO", "/mostrarPseudolistas.jsp");
 		opcionResultadoYJSP.put("crearCategoria", resultadoYJSP);
+		//Finalizar tarea
+		resultadoYJSP = new HashMap<String, String>();
+		resultadoYJSP.put("EXITO", "/confirmacionFinalizarTarea.jsp");
+		resultadoYJSP.put("FRACASO", "/mostrarPseudolistas.jsp");
+		opcionResultadoYJSP.put("finalizarTarea", resultadoYJSP);
+		//Para ir desde la confirmación hasta la lista de tareas de nuevo
+		resultadoYJSP = new HashMap<String, String>();
+		resultadoYJSP.put("EXITO", "/filtrarTareas");
+		opcionResultadoYJSP.put("auxiliarListaTareas", resultadoYJSP);
 
 		mapaDeNavegacion.put("USUARIO", opcionResultadoYJSP);
 
@@ -243,7 +254,7 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resultadoYJSP.put("EXITO", "/confirmacionCambioEstadoUsuario.jsp");
 		opcionResultadoYJSP.put("modificarUsuarios", resultadoYJSP);
 		
-		// Para ir Atrás desde listarUsuarios.jsp a principalUsuario.jsp
+		// Para ir desde la confirmación hasta la lista de usuarios de nuevo
 		resultadoYJSP = new HashMap<String, String>();
 		resultadoYJSP.put("EXITO", "/listarUsuarios");
 		opcionResultadoYJSP.put("auxiliarListarUsuarios", resultadoYJSP);

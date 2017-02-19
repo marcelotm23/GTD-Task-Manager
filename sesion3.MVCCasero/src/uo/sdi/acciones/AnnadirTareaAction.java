@@ -54,7 +54,8 @@ public class AnnadirTareaAction implements Accion {
 			Log.debug("Algo ha ocurrido en la creación de la tarea: %s",
 					b.getMessage());
 			request.setAttribute("mensajeParaElUsuario",
-					"Ha ocurrido un error en la creación de la tarea, inténtelo de nuevo.");
+					"Ha ocurrido un error en la creación de la tarea, inténtelo de nuevo."
+					+ "No es válido un nombre vacío para la tarea.");
 			resultado = "FRACASO";
 		}
 
