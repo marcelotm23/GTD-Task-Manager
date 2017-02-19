@@ -1,6 +1,5 @@
 package uo.sdi.acciones;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +28,7 @@ public class ListarUsuariosAction implements Accion {
 			session.setAttribute("listaUsuarios", usuarios);
 			Log.debug("Obtenida lista de usuarios conteniendo [%d] usuarios", 
 					usuarios.size());
+
 		} catch (BusinessException b) {
 			Log.debug("Algo ha ocurrido obteniendo lista de tareas: %s",
 					b.getMessage());

@@ -237,10 +237,16 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		resultadoYJSP.put("EXITO", "/listarUsuarios.jsp");
 		resultadoYJSP.put("FRACASO", "/principalUsuario.jsp");
 		opcionResultadoYJSP.put("listarUsuarios", resultadoYJSP);
+		
 		// Modificar usuarios
 		resultadoYJSP = new HashMap<String, String>();
 		resultadoYJSP.put("EXITO", "/confirmacionCambioEstadoUsuario.jsp");
 		opcionResultadoYJSP.put("modificarUsuarios", resultadoYJSP);
+		
+		// Para ir Atrás desde listarUsuarios.jsp a principalUsuario.jsp
+		resultadoYJSP = new HashMap<String, String>();
+		resultadoYJSP.put("EXITO", "/listarUsuarios");
+		opcionResultadoYJSP.put("auxiliarListarUsuarios", resultadoYJSP);
 		
 		mapaDeNavegacion.put("ADMIN", opcionResultadoYJSP);
 

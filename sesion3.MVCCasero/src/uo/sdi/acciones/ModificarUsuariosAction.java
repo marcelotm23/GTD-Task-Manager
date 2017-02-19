@@ -7,12 +7,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import alb.util.log.Log;
+import uo.sdi.business.AdminService;
 import uo.sdi.business.Services;
-import uo.sdi.business.UserService;
 import uo.sdi.business.exception.BusinessException;
 import uo.sdi.dto.User;
 import uo.sdi.dto.types.UserStatus;
-import uo.sdi.dto.util.Cloner;
 
 public class ModificarUsuariosAction implements Accion {
 
@@ -27,23 +26,47 @@ public class ModificarUsuariosAction implements Accion {
 		List<User> listaUsuarios = (List<User>) session
 				.getAttribute("listaUsuarios");
 
+		AdminService adminService = Services.getAdminService();
+		boolean modificadoAlgunUsuario = false;
+		boolean borradoAlgunUsuario = false;
+		String mensajeParaElUsuario;
+
 		try {
 			for (int i = 0; i < listaUsuarios.size(); i++) {
-				User userClone = Cloner.clone(listaUsuarios.get(i));
-				if ( request.getParameter("cb_" + i) != null ) {
-					userClone.setStatus(UserStatus.ENABLED);
+				User user = listaUsuarios.get(i);
+				if (request.getParameter("eliminar_" + i) != null) {
+					adminService.deepDeleteUser(user.getId());
+					borradoAlgunUsuario = true;
 				} else {
-					userClone.setStatus(UserStatus.DISABLED);
+					if (request.getParameter("cb_" + i) != null) {
+						if (user.getStatus().equals(UserStatus.DISABLED)) {
+							modificadoAlgunUsuario = true;
+						}
+						adminService.enableUser(user.getId());
+					} else {
+						if (user.getStatus().equals(UserStatus.ENABLED)) {
+							modificadoAlgunUsuario = true;
+						}
+						adminService.disableUser(user.getId());
+					}
+					Log.debug("El user [%s] ha cambiado de status", user);
 				}
-				UserService userService = Services.getUserService();
-				userService.updateUserDetails(userClone);
-				Log.debug("El user [%s] ha pasado de [%s] a [%s]", 
-						listaUsuarios.get(i), 
-						listaUsuarios.get(i).getStatus(), 
-						userClone.getStatus());
 			}
-			request.setAttribute("mensajeParaElUsuario",
-					"Se ha modificado el estado los usuarios con éxito");
+			if (modificadoAlgunUsuario) {
+				mensajeParaElUsuario = "Se ha modificado el estado de los usuarios con éxito";
+				if(borradoAlgunUsuario) {
+					mensajeParaElUsuario+= " y se han borrado uno o más usuarios.";
+				}
+				request.setAttribute("mensajeParaElUsuario",
+						mensajeParaElUsuario);
+			} else {
+				mensajeParaElUsuario = "No se ha modificado el estado ningún usuario";
+				if(borradoAlgunUsuario) {
+					mensajeParaElUsuario+= " y se han borrado uno o más usuarios.";
+				}
+				request.setAttribute("mensajeParaElUsuario",
+						mensajeParaElUsuario);
+			}
 		} catch (BusinessException e) {
 			Log.debug("Ha ocurrido un error [%s]", e.getMessage());
 			request.setAttribute("mensajeParaElUsuario",
