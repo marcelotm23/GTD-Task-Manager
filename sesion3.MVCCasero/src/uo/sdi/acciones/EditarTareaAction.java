@@ -22,25 +22,40 @@ public class EditarTareaAction implements Accion{
 		String titulo = request.getParameter("title");
 		String comentarios = request.getParameter("comments");
 		String fechaPlaneada = request.getParameter("planned");
-		String categoria = request.getParameter("category");
+		String optionId=request.getParameterValues("category")[0];
+		Long categoriaId = null;
+		if(optionId.compareTo("inbox")!=0){
+			categoriaId = Long.parseLong(optionId);
+		}
+		
 		HttpSession session = request.getSession();
 		Task task = ((Task) session.getAttribute("task"));
 		Task taskClone = Cloner.clone(task);
 
+		
 		try {
 			taskClone.setTitle(titulo);
 			taskClone.setComments(comentarios);
 			taskClone.setPlanned(DateUtil.fromString(fechaPlaneada));
-			//taskClone.setCategoryId(category_id);
+
+			if(categoriaId!=task.getCategoryId()){
+				taskClone.setCategoryId(categoriaId);
+			}
 			
 			TaskService taskService=Services.getTaskService();
 			taskService.updateTask(taskClone);
 		} catch (BusinessException b) {
+			resultado = "FRACASO";
 			Log.debug(
-					"Algo ha ocurrido actualizando la tarea de título [%s]: ",
+					"Algo ha ocurrido actualizando la tarea de título [%s]: %s",
 					titulo, b.getMessage());
 		}
 		return resultado;
+	}
+	
+	@Override
+	public String toString() {
+		return getClass().getName();
 	}
 
 }

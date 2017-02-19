@@ -16,16 +16,16 @@
 				<td>Título:</td>
 				<td id="title">
 				<input type="text"
-					name="title" size="20" 
+					name="title" size="30" 
 					value="<jsp:getProperty property="title" name="task" />">
 					</td>
 			</tr>
 			<tr>
 				<td>Comentarios:</td>
 				<td id="comments"> 
-					<textarea name="comments" rows="10" cols="30">
-						<jsp:getProperty property="comments" name="task"/>
-					</textarea>
+					<textarea name="comments" rows="10" cols="30"
+					>${task.getComments().compareTo("null")==0 ? 
+					"":task.getComments()}</textarea>
 				</td>
 			</tr>
 			<tr>
@@ -39,10 +39,14 @@
 			<tr>
 				<td>Categoría:</td>
 				<td id="category">
-				<input type="text"
-					name="category" size="20" 
-					value="<jsp:getProperty property="categoryId" name="task" />">
-					</td>
+				 <select name="category">
+				 	<option id="inbox" value="inbox">Ninguna</option>
+				 	<c:forEach var="entry" items="${listaCategorias}" varStatus="i">
+				 	<option id="${entry.name}" value="${entry.id}" 
+				 	${entry.id==task.getCategoryId() ? 'selected' : ''}>${entry.name}</option>
+					</c:forEach>
+				</select>
+				</td>
 			</tr>
 		</table>
 		<input type="submit" value="Modificar">

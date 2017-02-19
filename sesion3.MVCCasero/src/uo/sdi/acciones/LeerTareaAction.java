@@ -1,5 +1,7 @@
 package uo.sdi.acciones;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -7,7 +9,9 @@ import javax.servlet.http.HttpSession;
 import uo.sdi.business.Services;
 import uo.sdi.business.TaskService;
 import uo.sdi.business.exception.BusinessException;
+import uo.sdi.dto.Category;
 import uo.sdi.dto.Task;
+import uo.sdi.dto.User;
 import alb.util.log.Log;
 
 public class LeerTareaAction implements Accion{
@@ -19,11 +23,14 @@ public class LeerTareaAction implements Accion{
 		
 		Long idTarea=Long.parseLong(request.getParameter("idTarea"));
 		HttpSession session=request.getSession();
+		User user=(User) session.getAttribute("user");
 		
 		TaskService taskService = Services.getTaskService();
 		Task selecTask=null;
 		try {
 			selecTask = taskService.findTaskById(idTarea);
+			List<Category> listaCategorias = taskService.findCategoriesByUserId(user.getId());
+			request.setAttribute("listaCategorias", listaCategorias);
 			if (selecTask!=null) {
 				session.setAttribute("task", selecTask);
 				Log.info("Se ha leeido la tarea con id [%s]",idTarea);

@@ -127,7 +127,7 @@ INSERT INTO TTASKS VALUES(67,NULL,'2017-02-02','2017-02-08','2017-02-08','Task 1
 INSERT INTO TTASKS VALUES(68,'Aenean vehicula mattis dui. Praesent vel risus sed tellus aliquet aliquam. Integer bibendum eros lorem, ut feugiat justo luctus eu. Praesent pharetra tincidunt scelerisque. ','2017-02-02',NULL,NULL,'Task 8 for category @Office',2,1)
 INSERT INTO TTASKS VALUES(69,'Aenean vehicula mattis dui. Praesent vel risus sed tellus aliquet aliquam. Integer bibendum eros lorem, ut feugiat justo luctus eu. Praesent pharetra tincidunt scelerisque. ','2017-02-02','2017-02-11','2017-02-10','Task 0 for category @Office',2,1)
 INSERT INTO TTASKS VALUES(70,NULL,'2017-02-02',NULL,'2017-02-02','Task 6 for category Calls',5,1)
-INSERT INTO TTASKS VALUES(71,'Esto es una prueba','2017-02-12',NULL,'2017-02-12','PRUEBA',NULL,1)
+INSERT INTO TTASKS VALUES(71,'\u0009\u0009\u0009\u0009\u0009\u0009Esto es una prueba de edicci\u00c3\u00b3n.\u000d\u000a\u0009\u0009\u0009\u0009\u0009','2017-02-12',NULL,'2017-02-12','PRUEBA',NULL,1)
 INSERT INTO TTASKS VALUES(72,NULL,'2017-02-18',NULL,NULL,'Prueba david',NULL,6)
 INSERT INTO TTASKS VALUES(73,NULL,'2017-02-18',NULL,NULL,'Prueba david',NULL,6)
 INSERT INTO TTASKS VALUES(74,NULL,'2017-02-18',NULL,'2017-02-18','Prueba tarea para hoy',NULL,6)
