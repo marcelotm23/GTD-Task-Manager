@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-<title>TaskManager - Listado de tareas</title>
+<title>TaskManager - Listado de usuarios</title>
 </head>
 <body>
 	<form action="modificarUsuarios" method="POST">
@@ -14,6 +14,7 @@
 				<th>Email</th>
 				<th>Status</th>
 				<th>Habilitar/Deshabilitar</th>
+				<th>Eliminar</th>
 			</tr>
 			<c:forEach var="entry" items="${listaUsuarios}" varStatus="i">
 				<tr id="item_${i.index}">
@@ -27,15 +28,15 @@
 					<c:if test="${entry.status == \"DISABLED\"}">
 						<td><input name="cb_${i.index}" type="checkbox" /></td>
 					</c:if>
+					<td><input name="eliminar_${i.index}" type="checkbox" /></td>
 				</tr>
 			</c:forEach>
-			<tr>
-				<td><input type="submit" align="right"
-					value="Modificar usuarios"></td>
-			</tr>
 		</table>
+		<p>Si selecciona el checkbox de eliminar, se borrará el usuario
+			correspondiente así como todas sus categorias y tareas</p>
+		<input type="submit" align="right" value="Modificar usuarios">
 	</form>
-	<a id="atras_link_id" href="principalUsuario.jsp">Atrás</a>
+	<br>
 	<%@ include file="pieDePagina.jsp"%>
 </body>
 </html>
