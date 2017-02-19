@@ -20,7 +20,24 @@ div#filtro {
 	<div id="menu">
 		<h1>GTD Manager</h1>
 		<ul>
-			<%@ include file="pseudolistasUsuario.jsp"%>
+<li><a href="filtrarTareas?idOpcion=inbox">Inbox</a></li>
+<li><a href="filtrarTareas?idOpcion=today">Hoy</a></li>
+<li><a href="filtrarTareas?idOpcion=week">Semana</a></li>
+
+<dl>
+  <dt>Categorías</dt>
+  <c:if test="${!empty listaCategorias}">
+  <dd><c:forEach var="entry" items="${listaCategorias}" varStatus="i">
+   <li><a href="filtrarTareas?idOpcion=${entry.id}">${entry.name}</a></li>
+	</c:forEach></dd>
+  </c:if>
+</dl>
+
+<form action="crearCategoria" method="POST">
+	<input type="text" name="nombreCategoria" size="20">
+	<br>
+	<input type="submit" value="+ Crear categoría">
+</form>
 		</ul>
 	</div>
 	<div id="añadirTarea">

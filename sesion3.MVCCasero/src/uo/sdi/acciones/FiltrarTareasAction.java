@@ -55,12 +55,12 @@ public class FiltrarTareasAction implements Accion{
 				}
 			}
 			
-			request.setAttribute("idOpcion", idOpcion);
-			request.setAttribute("listaTareas", listaTareas);
+			session.setAttribute("idOpcion", idOpcion);
+			session.setAttribute("listaTareas", listaTareas);
 			
 			//Categorias
 			listaCategorias=taskService.findCategoriesByUserId(user.getId());
-			request.setAttribute("listaCategorias", listaCategorias);
+			session.setAttribute("listaCategorias", listaCategorias);
 			Log.debug("Obtenida lista de tareas conteniendo [%d] tareas", 
 					listaTareas.size());
 		}
