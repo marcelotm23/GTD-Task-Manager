@@ -14,12 +14,19 @@ div#filtro {
 }
 ;
 </style>
-<script type="text/javascript">
-    function eliminar_categoria(){
-    	var r = ;
-       return r?"eliminarCategoria?idOpcion=":"";
+<script>
+function cambiarNombreCategoria(id) {
+    var categoryName = prompt("Introduzca el nuevo nombre para esta categoría", "Harry Potter");
+    if (categoryName != null) {
+        document.getElementById("cambiarNombreCategoria"+id).href =
+        "cambiarNombreCategoria?idCategoria="+id+"&nombreCategoria=\""+categoryName+"\"";
+        return true;
+    }else{
+    	return false;
     }
+}
 </script>
+
 <title>TaskManager - Pseudolistas</title>
 </head>
 <body>
@@ -38,6 +45,9 @@ div#filtro {
 		   <a 
 		   href="eliminarCategoria?idCategoria=${entry.id}" title="Eliminar categoría"
 		   onclick="return confirm('Esta acción eliminará la categoría con todas sus tareas. ¿Estás seguro?');">X</a>
+		   <a id="cambiarNombreCategoria${entry.id}"
+		   title="Cambiar nombre categoría"
+		   onclick="return cambiarNombreCategoria(${entry.id});">&#9997;</a>
 		   </li>
 			</c:forEach></dd>
 		  </c:if>
