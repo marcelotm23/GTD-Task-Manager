@@ -14,6 +14,7 @@
 	</i>
 	<br />
 	<br />
+	<h1>Página principal</h1>
 	<jsp:useBean id="user" class="uo.sdi.dto.User" scope="session" />
 	<form action="modificarDatos" method="POST">
 		<table>

@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import com.sdi.tests.casos.util.TestUtil;
 
-public class CrearNuevaCuenta {
+public class CrearNuevaCuentaTest {
 
 	private WebTester nuevoUser;
 	
