@@ -1,11 +1,11 @@
 package com.sdi.tests.casos.anonimo;
 
-import java.util.Random;
-
 import net.sourceforge.jwebunit.junit.WebTester;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.sdi.tests.casos.util.TestUtil;
 
 public class CrearNuevaCuenta {
 
@@ -15,6 +15,7 @@ public class CrearNuevaCuenta {
     public void prepare() {
     	nuevoUser=new WebTester();
     	nuevoUser.setBaseUrl("http://localhost:8280/UO237104");
+    	
     }
 	
 	@Test
@@ -45,7 +46,7 @@ public class CrearNuevaCuenta {
 	@Test
 	public void testCrearCuentaExito() {
 		nuevoUser.beginAt("/registrarse");
-		nuevoUser.setTextField("nombreUsuario", "nuevoUsuario"+creaNombreUsuarioRandom());
+		nuevoUser.setTextField("nombreUsuario", "nuevoUsuario"+TestUtil.creaNombreUsuarioRandom());
 		nuevoUser.setTextField("email", "email@email.com");
 		nuevoUser.setTextField("contrasena", "nuevoUsuario123");
 		nuevoUser.setTextField("contrasenaAgain", "nuevoUsuario123");
@@ -54,16 +55,7 @@ public class CrearNuevaCuenta {
 		nuevoUser.assertTextPresent("Se ha registrado correctamente. Puede "
 				+ "proceder a logearse.");
 	}
-	public String creaNombreUsuarioRandom(){
-		char[] letras = "abcdefghijklmnñopqrstuvwxyz".toCharArray();
-		StringBuilder sb = new StringBuilder();
-		Random random = new Random();
-		for (int i = 0; i < 4; i++) {
-		    char c = letras[random.nextInt(letras.length)];
-		    sb.append(c);
-		}
-		return sb.toString();
-		}
+	
 	@Test
 	public void testCrearCuentaFracaso() {
 		nuevoUser.beginAt("/registrarse");

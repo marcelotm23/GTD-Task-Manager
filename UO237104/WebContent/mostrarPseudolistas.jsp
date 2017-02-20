@@ -33,9 +33,9 @@ function cambiarNombreCategoria(id) {
 	<div id="menu">
 		<h1>GTD Manager</h1>
 		<ul>
-			<li><a href="filtrarTareas?idOpcion=inbox">Inbox</a></li>
-			<li><a href="filtrarTareas?idOpcion=today">Hoy</a></li>
-			<li><a href="filtrarTareas?idOpcion=week">Semana</a></li>
+			<li><a id="inbox_link" href="filtrarTareas?idOpcion=inbox">Inbox</a></li>
+			<li><a id="today_link" href="filtrarTareas?idOpcion=today">Hoy</a></li>
+			<li><a id="week_link" href="filtrarTareas?idOpcion=week">Semana</a></li>
 		</ul>
 		<dl>
 		  <dt>Categorías</dt>
@@ -61,7 +61,8 @@ function cambiarNombreCategoria(id) {
 	</div>
 	<div id="añadirTarea">
 		<h2 align="center">Añadir tarea</h2>
-		<form action="añadirTarea?idOpcion=${idOpcion}" method="POST">
+		<form name="añadirTarea_form" action="añadirTarea?idOpcion=${idOpcion}" 
+		method="POST">
 			<table align="center">
 				<tr>
 					<td>Nombre de la tarea</td>
@@ -77,7 +78,7 @@ function cambiarNombreCategoria(id) {
 		<div id="filtro">
 			<h2>Filtros</h2>
 			<br>
-			<form action="filtrarTareas?idOpcion=${idOpcion}" method="POST">
+			<form name="filtros_form" action="filtrarTareas?idOpcion=${idOpcion}" method="POST">
 				<input name="cb_mostrarFinalizadas" type="checkbox"> Mostrar
 				tareas finalizadas<br> <input type="submit" align="right"
 					value="Aplicar">
