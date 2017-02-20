@@ -9,6 +9,6 @@
 <body>
 	<%@ include file="pieDePagina.jsp"%>
 	<br>
-	<form action="auxiliarListarUsuarios"><br><input type="submit" value="Volver"></form>
+	<form action="auxiliarListarUsuarios"><br><input type="submit" name="confirmEstado" value="Volver"></form>
 </body>
 </html>

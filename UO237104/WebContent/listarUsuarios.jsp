@@ -22,13 +22,13 @@
 					<td>${entry.email}</td>
 					<td>${entry.status}</td>
 					<c:if test="${entry.status == \"ENABLED\"}">
-						<td><input name="cb_${i.index}" type="checkbox"
+						<td><input name="cb_${entry.login}" type="checkbox"
 							checked="checked" /></td>
 					</c:if>
 					<c:if test="${entry.status == \"DISABLED\"}">
-						<td><input name="cb_${i.index}" type="checkbox" /></td>
+						<td><input name="cb_${entry.login}" type="checkbox" /></td>
 					</c:if>
-					<td><input name="eliminar_${i.index}" type="checkbox" /></td>
+					<td><input name="eliminar_${entry.login}" type="checkbox" /></td>
 				</tr>
 			</c:forEach>
 		</table>

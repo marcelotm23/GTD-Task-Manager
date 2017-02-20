@@ -34,11 +34,11 @@ public class ModificarUsuariosAction implements Accion {
 		try {
 			for (int i = 0; i < listaUsuarios.size(); i++) {
 				User user = listaUsuarios.get(i);
-				if (request.getParameter("eliminar_" + i) != null) {
+				if (request.getParameter("eliminar_" + user.getLogin()) != null) {
 					adminService.deepDeleteUser(user.getId());
 					borradoAlgunUsuario = true;
 				} else {
-					if (request.getParameter("cb_" + i) != null) {
+					if (request.getParameter("cb_" + user.getLogin()) != null) {
 						if (user.getStatus().equals(UserStatus.DISABLED)) {
 							modificadoAlgunUsuario = true;
 						}
