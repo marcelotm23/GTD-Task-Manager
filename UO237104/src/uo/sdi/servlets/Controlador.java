@@ -127,7 +127,6 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		// Anonimo
 		Map<String, Accion> mapaPublico = new HashMap<String, Accion>();
 		mapaPublico.put("validarse", new ValidarseAction());
-		mapaPublico.put("listarCategorias", new ListarCategoriasAction());
 		mapaPublico.put("registrarse", new RegistrarseAction());
 		mapaPublico.put("crearCuenta", new CrearCuentaAction());
 		mapaDeAcciones.put("ANONIMO", mapaPublico);
@@ -167,10 +166,6 @@ public class Controlador extends javax.servlet.http.HttpServlet {
 		// Mapa de navegación de anónimo
 		resultadoYJSP.put("FRACASO", "/login.jsp");
 		opcionResultadoYJSP.put("validarse", resultadoYJSP);
-		resultadoYJSP = new HashMap<String, String>();
-		resultadoYJSP.put("EXITO", "/listarCategorias.jsp");
-		resultadoYJSP.put("FRACASO", "/login.jsp");
-		opcionResultadoYJSP.put("listarCategorias", resultadoYJSP);
 		resultadoYJSP = new HashMap<String, String>();
 		resultadoYJSP.put("EXITO", "/login.jsp");
 		resultadoYJSP.put("FRACASO", "/crearCuenta.jsp");
