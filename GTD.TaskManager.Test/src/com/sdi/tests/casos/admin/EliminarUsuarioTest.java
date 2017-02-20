@@ -5,21 +5,21 @@ import net.sourceforge.jwebunit.junit.WebTester;
 import org.junit.Before;
 import org.junit.Test;
 
-public class DeshabilitarUsuario {
+public class EliminarUsuarioTest {
 
 	private WebTester nuevoUser;
 	private WebTester admin;
-	
+
 	@Before
-    public void prepare() {
-    	nuevoUser=new WebTester();
-    	admin = new WebTester();
-    	nuevoUser.setBaseUrl("http://localhost:8280/UO237104");
-    	admin.setBaseUrl("http://localhost:8280/UO237104");
-    }
-	
+	public void prepare() {
+		nuevoUser = new WebTester();
+		admin = new WebTester();
+		nuevoUser.setBaseUrl("http://localhost:8280/UO237104");
+		admin.setBaseUrl("http://localhost:8280/UO237104");
+	}
+
 	@Test
-	public void testDeshabilitarUsuario() {
+	public void testEliminarUsuario() {
 		
 		nuevoUser.beginAt("/");
         nuevoUser.assertTitleEquals("TaskManager - Inicie sesión");
@@ -30,10 +30,10 @@ public class DeshabilitarUsuario {
         nuevoUser.assertTextPresent("Crear cuenta");
         nuevoUser.clickLink("crearCuenta_link_id");
 		nuevoUser.assertTitleEquals("TaskManager - Crear nueva cuenta de usuario");
-		nuevoUser.setTextField("nombreUsuario", "pruebaDeshabilitar");
-		nuevoUser.setTextField("email", "email@pruebaDeshabilitar.com");
-		nuevoUser.setTextField("contrasena", "pruebaDeshabilitar123");
-		nuevoUser.setTextField("contrasenaAgain", "pruebaDeshabilitar123");
+		nuevoUser.setTextField("nombreUsuario", "pruebaEliminar");
+		nuevoUser.setTextField("email", "email@pruebaEliminar.com");
+		nuevoUser.setTextField("contrasena", "pruebaEliminar123");
+		nuevoUser.setTextField("contrasenaAgain", "pruebaEliminar123");
 		nuevoUser.submit();
 		nuevoUser.assertTextPresent("Se ha registrado correctamente. Puede proceder a logearse.");
 		
@@ -48,21 +48,22 @@ public class DeshabilitarUsuario {
 		admin.assertTextPresent("Si selecciona el checkbox de eliminar, "
 				+ "se borrará el usuario correspondiente así como todas "
 				+ "sus categorias y tareas");
-		admin.assertTextPresent("pruebaDeshabilitar");
-		admin.assertTextPresent("email@pruebaDeshabilitar.com");
+		// Eliminar usuario
+		admin.assertTextPresent("pruebaEliminar");
+		admin.assertTextPresent("email@pruebaEliminar.com");
 		admin.assertTextPresent("ENABLED");
-		admin.assertCheckboxPresent("cb_pruebaDeshabilitar");
-		admin.assertCheckboxSelected("cb_pruebaDeshabilitar");
-		admin.uncheckCheckbox("cb_pruebaDeshabilitar");
+		admin.assertCheckboxPresent("eliminar_pruebaEliminar");
+		admin.assertCheckboxNotSelected("eliminar_pruebaEliminar");
+		admin.checkCheckbox("eliminar_pruebaEliminar");
 		admin.setExpectedJavaScriptConfirm("¿Estás seguro de confirmar los "
 				+ "cambios?. En caso de eliminar usuarios esta acción no se "
 				+ "puede deshacer.", true);
 		admin.submit();
 		admin.submit("confirmEstado", "Volver");
-		admin.assertTextPresent("pruebaDeshabilitar");
-		admin.assertTextPresent("email@pruebaDeshabilitar.com");
-		admin.assertTextPresent("DISABLED");
-		admin.assertCheckboxNotSelected("cb_pruebaDeshabilitar");
+		admin.assertTextNotPresent("pruebaEliminar");
+		admin.assertTextNotPresent("email@pruebaEliminar.com");
+		admin.assertCheckboxNotPresent("cb_pruebaEliminar");
+		admin.assertCheckboxNotPresent("eliminar_pruebaEliminar");
 	}
 
 }

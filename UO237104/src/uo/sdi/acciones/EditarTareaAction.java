@@ -56,8 +56,8 @@ public class EditarTareaAction implements Accion {
 					"Algo ha ocurrido actualizando la tarea de título [%s]: %s",
 					titulo, b.getMessage());
 			request.setAttribute("mensajeParaElUsuario",
-					"ERROR: La categoría no"
-							+ " se ha eliminado correctamente, por el motivo ["
+					"ERROR: La tarea no"
+							+ " se ha modificado correctamente, por el motivo ["
 							+ b.getMessage() + "]");
 		}
 		return resultado;

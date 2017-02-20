@@ -48,7 +48,7 @@
 										out.write("<td>" + "</td>");
 									}
 					%>
-					<td><a id="editarTarea" href="leerTarea?idTarea=${entry.id}">
+					<td><a id="editarTarea_link" href="leerTarea?idTarea=${entry.id}">
 						Editar</a></td>
 					<td><a id="finalizarTarea"
 						href="finalizarTarea?idTarea=${entry.id}">Finalizar</a></td>

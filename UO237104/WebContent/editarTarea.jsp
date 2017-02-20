@@ -31,7 +31,7 @@
 			<tr>
 				<td>Fecha planeada:</td>
 				<td id="planned">
-				<input type="text"
+				<input type="text" placeholder="dd/MM/yyyy"
 					name="planned" size="20" 
 					value="<fmt:formatDate pattern="dd/MM/yyyy" value="${task.planned}"/>"/>
 				</td>
@@ -41,9 +41,13 @@
 				<td id="category">
 				 <select name="category">
 				 	<option id="inbox" value="inbox">Ninguna</option>
-				 	<c:forEach var="entry" items="${listaCategorias}" varStatus="i">
-				 	<option id="${entry.name}" value="${entry.id}" 
-				 	${entry.id==task.getCategoryId() ? 'selected' : ''}>${entry.name}</option>
+				 	<c:forEach var="entry" items="${listaCategorias}" 
+				 	varStatus="i">
+				 	<option id="${entry.name}" 
+				 	value="${entry.id}" 
+				 	${entry.id==task.getCategoryId() ? 'selected' : ''}>
+				 		${entry.name}
+				 	</option>
 					</c:forEach>
 				</select>
 				</td>

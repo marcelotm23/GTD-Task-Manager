@@ -3,6 +3,7 @@ package com.sdi.tests.casos.usuario;
 import net.sourceforge.jwebunit.junit.WebTester;
 
 import org.junit.Before;
+import org.junit.Test;
 
 import com.sdi.tests.casos.util.TestUtil;
 
@@ -18,6 +19,7 @@ public class AnnadirTareasTest {
     	//Clickar mostrar tareas
     	TestUtil.clickMostrarTareas(user);
     }
+	@Test
 	public void generalTest() {
 		user.assertTitleEquals("TaskManager - Pseudolistas");
 		user.assertTextPresent("GTD Manager");
@@ -32,7 +34,7 @@ public class AnnadirTareasTest {
 		user.assertTextPresent("La tarea ha sido creada con éxito.");
 		user.submit();
 		//Añadir tarea a today
-		user.clickLink("Hoy");
+		user.clickLink("today_link");
 		user.assertTextPresent("Añadir tarea");
 		user.assertFormPresent("añadirTarea_form");
 		user.setTextField("nombreTarea", "Esto es una tarea para today");
@@ -42,19 +44,19 @@ public class AnnadirTareasTest {
 		//Añadir tarea vacía inbox
 		user.assertTextPresent("Añadir tarea");
 		user.assertFormPresent("añadirTarea_form");
-		user.setTextField("nombreTarea", "Esto es una tarea para inbox");
+		user.setTextField("nombreTarea", "");
 		user.submit();
 		user.assertTextPresent("Ha ocurrido un error en la creación de la tarea,"
-				+ " inténtelo de nuevo.No es válido un nombre vacío para la tarea.");
+				+ " inténtelo de nuevo. No es válido un nombre vacío para la tarea.");
 		user.submit();
 		//Añadir tarea vacía a today
-		user.clickLink("Hoy");
+		user.clickLink("today_link");
 		user.assertTextPresent("Añadir tarea");
 		user.assertFormPresent("añadirTarea_form");
-		user.setTextField("nombreTarea", "Esto es una tarea para today");
+		user.setTextField("nombreTarea", "");
 		user.submit();
 		user.assertTextPresent("Ha ocurrido un error en la creación de la tarea,"
-				+ " inténtelo de nuevo.No es válido un nombre vacío para la tarea.");
+				+ " inténtelo de nuevo. No es válido un nombre vacío para la tarea.");
 
 		user.submit();
 		

@@ -2,7 +2,7 @@
 	contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<table border="1" align="center">
+<table border="1">
 	<tr>
 		<th>Titulo</th>
 		<th>Comentarios</th>
@@ -43,7 +43,7 @@
 						out.write("<td>" + "</td>");
 					}
 			%>
-			<td><a id="editarTarea" href="leerTarea?idTarea=${entry.id}">
+			<td><a id="editarTarea_link" href="leerTarea?idTarea=${entry.id}">
 				Editar</a></td>
 			<td><a id="finalizarTarea"
 				href="finalizarTarea?idTarea=${entry.id}">Finalizar</a></td>

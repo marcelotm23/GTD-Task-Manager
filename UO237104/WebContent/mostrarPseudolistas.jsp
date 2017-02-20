@@ -78,7 +78,8 @@ function cambiarNombreCategoria(id) {
 		<div id="filtro">
 			<h2>Filtros</h2>
 			<br>
-			<form name="filtros_form" action="filtrarTareas?idOpcion=${idOpcion}" method="POST">
+			<form name="filtros_form" action="filtrarTareas?idOpcion=${idOpcion}" 
+			method="POST">
 				<input name="cb_mostrarFinalizadas" type="checkbox"> Mostrar
 				tareas finalizadas<br> <input type="submit" align="right"
 					value="Aplicar">
