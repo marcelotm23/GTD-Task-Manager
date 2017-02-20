@@ -34,7 +34,8 @@
 		</table>
 		<p>Si selecciona el checkbox de eliminar, se borrará el usuario
 			correspondiente así como todas sus categorias y tareas</p>
-		<input type="submit" align="right" value="Modificar usuarios">
+		<input type="submit" align="right" value="Modificar usuarios"
+		onclick="return confirm('¿Estás seguro de confirmar los cambios?. En caso de eliminar usuarios esta acción no se puede deshacer.');">
 	</form>
 	<br>
 	<%@ include file="pieDePagina.jsp"%>

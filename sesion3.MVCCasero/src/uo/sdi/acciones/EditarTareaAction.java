@@ -32,11 +32,17 @@ public class EditarTareaAction implements Accion{
 		Task task = ((Task) session.getAttribute("task"));
 		Task taskClone = Cloner.clone(task);
 
-		
+		//Hacer excepciones
 		try {
 			taskClone.setTitle(titulo);
 			taskClone.setComments(comentarios);
-			taskClone.setPlanned(DateUtil.fromString(fechaPlaneada));
+			if(fechaPlaneada.compareTo("")!=0){
+				try {
+					taskClone.setPlanned(DateUtil.fromString(fechaPlaneada));
+				} catch (NumberFormatException e) {
+					throw new BusinessException("El formato de la fecha debe ser dd/MM/yyyy");
+				}
+			}
 
 			if(categoriaId!=task.getCategoryId()){
 				taskClone.setCategoryId(categoriaId);
@@ -49,6 +55,8 @@ public class EditarTareaAction implements Accion{
 			Log.debug(
 					"Algo ha ocurrido actualizando la tarea de título [%s]: %s",
 					titulo, b.getMessage());
+			request.setAttribute("mensajeParaElUsuario", "ERROR: La categoría no"
+					+ " se ha eliminado correctamente, por el motivo ["+b.getMessage()+"]");
 		}
 		return resultado;
 	}

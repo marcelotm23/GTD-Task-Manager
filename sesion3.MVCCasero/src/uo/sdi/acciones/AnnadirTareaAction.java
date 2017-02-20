@@ -41,6 +41,7 @@ public class AnnadirTareaAction implements Accion {
 				tarea.setPlanned(DateUtil.today());
 			} else if (!idOpcion.equals("inbox") && !idOpcion.equals("week")) {
 				Long idCategoria = Long.parseLong(idOpcion);
+				
 				tarea.setCategoryId(idCategoria);
 			}
 
