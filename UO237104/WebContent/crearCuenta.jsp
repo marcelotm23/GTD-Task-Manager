@@ -19,7 +19,7 @@
 			<tr>
 				<td>Email:</td>
 				<td id="email"><input type="text" name="email" size="30"
-					placeholder="Ej: ejemplo@ejemplo.com"></td>
+					></td>
 			</tr>
 			<tr>
 				<td>Contraseña:</td>

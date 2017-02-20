@@ -31,7 +31,7 @@
 			<tr>
 				<td>Fecha planeada:</td>
 				<td id="planned">
-				<input type="text" placeholder="dd/MM/yyyy"
+				<input type="text"
 					name="planned" size="20" 
 					value="<fmt:formatDate pattern="dd/MM/yyyy" value="${task.planned}"/>"/>
 				</td>

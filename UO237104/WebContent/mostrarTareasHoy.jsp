@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:forEach var="category" items="${listaCategorias}" varStatus="i">
 	<h3>${category.name}</h3>
-	<table border="1" align="center">
+	<table border="1">
 		<tr>
 			<th>Titulo</th>
 			<th>Comentarios</th>
