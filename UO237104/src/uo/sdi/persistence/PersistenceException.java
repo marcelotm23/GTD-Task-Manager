@@ -1,9 +1,9 @@
 package uo.sdi.persistence;
 
 /**
- * This is a non checked exception. It indicates technical issues in the 
+ * This is a non checked exception. It indicates technical issues in the
  * persistence layer or other types of non-functional problems.
- *  
+ * 
  * @author alb
  */
 public class PersistenceException extends RuntimeException {
@@ -13,7 +13,8 @@ public class PersistenceException extends RuntimeException {
 		super();
 	}
 
-	public PersistenceException(String arg0, Throwable arg1, boolean arg2, boolean arg3) {
+	public PersistenceException(String arg0, Throwable arg1, boolean arg2,
+			boolean arg3) {
 		super(arg0, arg1, arg2, arg3);
 	}
 

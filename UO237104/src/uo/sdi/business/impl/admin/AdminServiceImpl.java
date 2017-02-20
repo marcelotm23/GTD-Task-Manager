@@ -13,35 +13,38 @@ import uo.sdi.dto.User;
 import uo.sdi.persistence.Persistence;
 
 public class AdminServiceImpl implements AdminService {
-	
+
 	@Override
 	public void deepDeleteUser(Long id) throws BusinessException {
-		new CommandExecutor<Void>().execute( new DeepDeleteUserCommand( id ) );
+		new CommandExecutor<Void>().execute(new DeepDeleteUserCommand(id));
 	}
 
 	@Override
 	public void disableUser(Long id) throws BusinessException {
-		new CommandExecutor<Void>().execute( new DisableUserCommand( id ) );
+		new CommandExecutor<Void>().execute(new DisableUserCommand(id));
 	}
 
 	@Override
 	public void enableUser(Long id) throws BusinessException {
-		new CommandExecutor<Void>().execute( new EnableUserCommand( id ) );
+		new CommandExecutor<Void>().execute(new EnableUserCommand(id));
 	}
 
 	@Override
-	public List<User> findAllUsers() throws BusinessException{
-		return  new CommandExecutor<List<User>>().execute( new Command<List<User>>() {
-			@Override public List<User> execute() throws BusinessException {
-				return Persistence.getUserDao().findAll();
-			}
-		});
+	public List<User> findAllUsers() throws BusinessException {
+		return new CommandExecutor<List<User>>()
+				.execute(new Command<List<User>>() {
+					@Override
+					public List<User> execute() throws BusinessException {
+						return Persistence.getUserDao().findAll();
+					}
+				});
 	}
 
 	@Override
 	public User findUserById(final Long id) throws BusinessException {
-		return new CommandExecutor<User>().execute( new Command<User>() {
-			@Override public User execute() throws BusinessException {
+		return new CommandExecutor<User>().execute(new Command<User>() {
+			@Override
+			public User execute() throws BusinessException {
 				return Persistence.getUserDao().findById(id);
 			}
 		});

@@ -42,8 +42,8 @@ public class ModificarDatosAction implements Accion {
 				Log.debug("Se ha modificado la información del usuario [%s]",
 						userClone.getLogin());
 				session.setAttribute("user", userClone);
-				request.setAttribute("mensajeParaElUsuario", "Se han guardo los "
-						+ "cambios realizados.");
+				request.setAttribute("mensajeParaElUsuario",
+						"Se han guardo los " + "cambios realizados.");
 			} else {
 				Log.debug("No se ha modificado ningún dato del usuario [%s]",
 						userClone.getLogin());
@@ -55,9 +55,9 @@ public class ModificarDatosAction implements Accion {
 			Log.debug(
 					"Algo ha ocurrido actualizando el email de [%s] a [%s]: %s",
 					user.getLogin(), nuevoEmail, b.getMessage());
-			request.setAttribute("mensajeParaElUsuario", "ERROR: "
-					+ b.getMessage());
-			
+			request.setAttribute("mensajeParaElUsuario",
+					"ERROR: " + b.getMessage());
+
 		}
 		return resultado;
 	}

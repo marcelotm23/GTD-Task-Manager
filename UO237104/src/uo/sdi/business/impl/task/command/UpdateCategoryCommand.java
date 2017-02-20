@@ -19,29 +19,28 @@ public class UpdateCategoryCommand implements Command<Void> {
 	@Override
 	public Void execute() throws BusinessException {
 		CategoryDao cDao = Persistence.getCategoryDao();
-		Category previous = cDao.findById( category.getId() ); 
+		Category previous = cDao.findById(category.getId());
 
-		checkCategoryExists( previous );
-		CategoryCheck.nameIsNotNull( category );
-		CategoryCheck.nameIsNotEmpty( category );
-		if ( nameIsChanged(previous, category) ) {
-			CategoryCheck.isUniqueName( category );
+		checkCategoryExists(previous);
+		CategoryCheck.nameIsNotNull(category);
+		CategoryCheck.nameIsNotEmpty(category);
+		if (nameIsChanged(previous, category)) {
+			CategoryCheck.isUniqueName(category);
 		}
-		checkUserIsNotChanged( previous, category);
-		
-		cDao.update( category );
+		checkUserIsNotChanged(previous, category);
+
+		cDao.update(category);
 		return null;
 	}
 
-	private void checkUserIsNotChanged(Category previous, Category current) throws BusinessException {
-		BusinessCheck.isTrue(
-			previous.getUserId().equals( current.getUserId() ),
-			"A category cannot be changed to other user"
-		);
+	private void checkUserIsNotChanged(Category previous, Category current)
+			throws BusinessException {
+		BusinessCheck.isTrue(previous.getUserId().equals(current.getUserId()),
+				"A category cannot be changed to other user");
 	}
 
 	private boolean nameIsChanged(Category previous, Category current) {
-		return ! previous.getName().equals( current.getName() );
+		return !previous.getName().equals(current.getName());
 	}
 
 	private void checkCategoryExists(Category c) throws BusinessException {

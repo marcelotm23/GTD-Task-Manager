@@ -25,7 +25,7 @@ public class AnnadirTareaAction implements Accion {
 		try {
 			HttpSession session = request.getSession();
 			User user = (User) session.getAttribute("user");
-			
+
 			String nombreTarea = request.getParameter("nombreTarea");
 			Long idUser = user.getId();
 
@@ -41,7 +41,7 @@ public class AnnadirTareaAction implements Accion {
 				tarea.setPlanned(DateUtil.today());
 			} else if (!idOpcion.equals("inbox") && !idOpcion.equals("week")) {
 				Long idCategoria = Long.parseLong(idOpcion);
-				
+
 				tarea.setCategoryId(idCategoria);
 			}
 
@@ -54,9 +54,11 @@ public class AnnadirTareaAction implements Accion {
 		} catch (BusinessException b) {
 			Log.debug("Algo ha ocurrido en la creación de la tarea: %s",
 					b.getMessage());
-			request.setAttribute("mensajeParaElUsuario",
-					"Ha ocurrido un error en la creación de la tarea, inténtelo de nuevo."
-					+ "No es válido un nombre vacío para la tarea.");
+			request.setAttribute(
+					"mensajeParaElUsuario",
+					"Ha ocurrido un error en la creación de la tarea, "
+							+ "inténtelo de nuevo. No es válido un nombre vacío "
+							+ "para la tarea.");
 			resultado = "FRACASO";
 		}
 

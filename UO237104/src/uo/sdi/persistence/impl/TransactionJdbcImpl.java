@@ -8,7 +8,7 @@ import uo.sdi.persistence.Transaction;
 import uo.sdi.persistence.util.Jdbc;
 
 public class TransactionJdbcImpl implements Transaction {
-	
+
 	private Connection con;
 
 	@Override
@@ -16,9 +16,9 @@ public class TransactionJdbcImpl implements Transaction {
 		assertNullConnection();
 		con = Jdbc.createConnection();
 		try {
-			con.setAutoCommit( false );
+			con.setAutoCommit(false);
 		} catch (SQLException e) {
-			throw new PersistenceException( e );
+			throw new PersistenceException(e);
 		}
 	}
 
@@ -28,12 +28,12 @@ public class TransactionJdbcImpl implements Transaction {
 		assertOpenConnection();
 		try {
 			con.commit();
-			con.setAutoCommit( true ); // makes Jdbc.close() to really close connection
+			con.setAutoCommit(true); // makes Jdbc.close() to really close
+										// connection
 		} catch (SQLException e) {
-			throw new PersistenceException( e );
-		}
-		finally {
-			Jdbc.close( con );
+			throw new PersistenceException(e);
+		} finally {
+			Jdbc.close(con);
 		}
 	}
 
@@ -43,35 +43,38 @@ public class TransactionJdbcImpl implements Transaction {
 		assertOpenConnection();
 		try {
 			con.rollback();
-			con.setAutoCommit( true ); // makes Jdbc.close() to really close connection
+			con.setAutoCommit(true); // makes Jdbc.close() to really close
+										// connection
 		} catch (SQLException e) {
-			throw new PersistenceException( e );
-		}
-		finally {
-			Jdbc.close( con );
+			throw new PersistenceException(e);
+		} finally {
+			Jdbc.close(con);
 		}
 	}
 
 	private void assertNullConnection() {
-		if (con == null) return;
+		if (con == null)
+			return;
 		throw new PersistenceException("Transaction is already initiated");
 	}
 
 	private void assertNonNullConnection() {
-		if (con != null) return;
+		if (con != null)
+			return;
 		throw new PersistenceException("Transaction is not initiated. "
 				+ "Call begin() method before use it.");
 	}
 
 	private void assertOpenConnection() {
-		if ( connectionIsOpen() ) return;
+		if (connectionIsOpen())
+			return;
 		throw new PersistenceException("Transaction is not initiated. "
 				+ "Call begin() method before use it.");
 	}
 
 	private boolean connectionIsOpen() {
 		try {
-			return ! con.isClosed();
+			return !con.isClosed();
 		} catch (SQLException e) {
 			throw new PersistenceException("Unexpected JDBC error");
 		}

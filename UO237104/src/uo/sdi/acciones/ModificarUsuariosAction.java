@@ -53,16 +53,20 @@ public class ModificarUsuariosAction implements Accion {
 				}
 			}
 			if (modificadoAlgunUsuario) {
-				mensajeParaElUsuario = "Se ha modificado el estado de los usuarios con éxito";
-				if(borradoAlgunUsuario) {
-					mensajeParaElUsuario+= " y se han borrado uno o más usuarios.";
+				mensajeParaElUsuario = 
+						"Se ha modificado el estado de los usuarios con éxito";
+				if (borradoAlgunUsuario) {
+					mensajeParaElUsuario += 
+							" y se han borrado uno o más usuarios.";
 				}
 				request.setAttribute("mensajeParaElUsuario",
 						mensajeParaElUsuario);
 			} else {
-				mensajeParaElUsuario = "No se ha modificado el estado ningún usuario";
-				if(borradoAlgunUsuario) {
-					mensajeParaElUsuario+= " y se han borrado uno o más usuarios.";
+				mensajeParaElUsuario = 
+						"No se ha modificado el estado ningún usuario";
+				if (borradoAlgunUsuario) {
+					mensajeParaElUsuario += 
+							" y se han borrado uno o más usuarios.";
 				}
 				request.setAttribute("mensajeParaElUsuario",
 						mensajeParaElUsuario);

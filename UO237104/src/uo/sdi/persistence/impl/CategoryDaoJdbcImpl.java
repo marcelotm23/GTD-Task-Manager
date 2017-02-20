@@ -15,31 +15,24 @@ public class CategoryDaoJdbcImpl implements CategoryDao {
 
 		@Override
 		public Category toObject(ResultSet rs) throws SQLException {
-			return new Category()
-					.setId( rs.getLong( "id" ))
-					.setName( rs.getString( "name" ))
-					.setUserId( rs.getLong( "user_id" ));
+			return new Category().setId(rs.getLong("id"))
+					.setName(rs.getString("name"))
+					.setUserId(rs.getLong("user_id"));
 		}
 	}
-	
+
 	private JdbcTemplate jdbcTemplate = new JdbcTemplate();
 
 	@Override
 	public Long save(Category dto) {
-		jdbcTemplate.execute("CATEGORY_INSERT",	
-				dto.getName(), 
-				dto.getUserId()
-			);
+		jdbcTemplate.execute("CATEGORY_INSERT", dto.getName(), dto.getUserId());
 		return jdbcTemplate.getGeneratedKey();
 	}
 
 	@Override
 	public int update(Category dto) {
-		return jdbcTemplate.execute("CATEGORY_UPDATE",
-				dto.getName(),
-				dto.getUserId(),
-				dto.getId()
-			);
+		return jdbcTemplate.execute("CATEGORY_UPDATE", dto.getName(),
+				dto.getUserId(), dto.getId());
 	}
 
 	@Override
@@ -49,24 +42,20 @@ public class CategoryDaoJdbcImpl implements CategoryDao {
 
 	@Override
 	public Category findById(Long id) {
-		return jdbcTemplate.queryForObject(
-				"CATEGORY_FIND_BY_ID", 
-				new CategoryDtoMapper(), 
-				id
-			);
+		return jdbcTemplate.queryForObject("CATEGORY_FIND_BY_ID",
+				new CategoryDtoMapper(), id);
 	}
 
 	@Override
 	public List<Category> findAll() {
-		return jdbcTemplate.queryForList("CATEGORY_FIND_ALL", new CategoryDtoMapper());
+		return jdbcTemplate.queryForList("CATEGORY_FIND_ALL",
+				new CategoryDtoMapper());
 	}
 
 	@Override
 	public List<Category> findByUserId(Long userId) {
-		return jdbcTemplate.queryForList("CATEGORY_FIND_BY_USER_ID", 
-				new CategoryDtoMapper(),
-				userId 
-			);
+		return jdbcTemplate.queryForList("CATEGORY_FIND_BY_USER_ID",
+				new CategoryDtoMapper(), userId);
 	}
 
 	@Override
@@ -76,11 +65,8 @@ public class CategoryDaoJdbcImpl implements CategoryDao {
 
 	@Override
 	public Category findByUserIdAndName(Long userId, String name) {
-		return jdbcTemplate.queryForObject(
-				"CATEGORY_FIND_BY_USER_ID_AND_NAME", 
-				new CategoryDtoMapper(), 
-				userId, name
-			);
+		return jdbcTemplate.queryForObject("CATEGORY_FIND_BY_USER_ID_AND_NAME",
+				new CategoryDtoMapper(), userId, name);
 	}
 
 }

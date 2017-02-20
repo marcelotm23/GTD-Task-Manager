@@ -36,7 +36,8 @@ public class CrearCuentaAction implements Accion {
 				userService.registerUser(newUser);
 				Log.debug("El usuario [%s] ha sido registrado", nombreUsuario);
 				request.setAttribute("mensajeParaElUsuario",
-						"Se ha registrado correctamente. Puede proceder a logearse.");
+						"Se ha registrado correctamente. Puede proceder a "
+								+ "logearse.");
 
 			}
 		} catch (BusinessException e) {
@@ -44,7 +45,7 @@ public class CrearCuentaAction implements Accion {
 					"El usuario [%s] no ha sido registrado, por el motivo: [%s]",
 					nombreUsuario, e.getMessage());
 			request.setAttribute("mensajeParaElUsuario", e.getMessage());
-			resultado="FRACASO";
+			resultado = "FRACASO";
 		}
 		return resultado;
 	}

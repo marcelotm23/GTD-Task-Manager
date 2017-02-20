@@ -9,22 +9,22 @@ public class CerrarSesionAction implements Accion {
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) {
-		
-		String resultado="EXITO";
-		
-		HttpSession session=request.getSession();
-		if(session!=null){
+
+		String resultado = "EXITO";
+
+		HttpSession session = request.getSession();
+		if (session != null) {
 			session.invalidate();
-		}else{
-			resultado="FRACASO";
+		} else {
+			resultado = "FRACASO";
 		}
-		
+
 		return resultado;
 	}
-	
+
 	@Override
 	public String toString() {
 		return getClass().getName();
 	}
-	
+
 }

@@ -8,15 +8,15 @@ public class RegistrarseAction implements Accion {
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) {
-		
-		String resultado="EXITO";
-		
+
+		String resultado = "EXITO";
+
 		return resultado;
 	}
-	
+
 	@Override
 	public String toString() {
 		return getClass().getName();
 	}
-	
+
 }

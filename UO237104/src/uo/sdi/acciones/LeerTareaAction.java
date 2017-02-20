@@ -14,45 +14,47 @@ import uo.sdi.dto.Task;
 import uo.sdi.dto.User;
 import alb.util.log.Log;
 
-public class LeerTareaAction implements Accion{
+public class LeerTareaAction implements Accion {
 
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) {
-		String resultado="EXITO";
-		
-		Long idTarea=Long.parseLong(request.getParameter("idTarea"));
-		HttpSession session=request.getSession();
-		User user=(User) session.getAttribute("user");
-		
+		String resultado = "EXITO";
+
+		Long idTarea = Long.parseLong(request.getParameter("idTarea"));
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+
 		TaskService taskService = Services.getTaskService();
-		Task selecTask=null;
+		Task selecTask = null;
 		try {
 			selecTask = taskService.findTaskById(idTarea);
-			List<Category> listaCategorias = taskService.findCategoriesByUserId(user.getId());
+			List<Category> listaCategorias = taskService
+					.findCategoriesByUserId(user.getId());
 			request.setAttribute("listaCategorias", listaCategorias);
-			if (selecTask!=null) {
+			if (selecTask != null) {
 				session.setAttribute("task", selecTask);
-				Log.info("Se ha leeido la tarea con id [%s]",idTarea);
-			}
-			else {
+				Log.info("Se ha leeido la tarea con id [%s]", idTarea);
+			} else {
 				session.invalidate();
-				Log.info("La tarea con id [%s] no se ha encontrado",idTarea);
-				request.setAttribute("mensajeParaElUsuario", "La tarea con id ["+
-						idTarea+"] no ha sido encontrada");
-				resultado="FRACASO";
+				Log.info("La tarea con id [%s] no se ha encontrado", idTarea);
+				request.setAttribute("mensajeParaElUsuario",
+						"La tarea con id [" + idTarea
+								+ "] no ha sido encontrada");
+				resultado = "FRACASO";
 			}
 		} catch (BusinessException b) {
 			session.invalidate();
-			Log.debug("Algo ha ocurrido intentando leer la tarea con id [%d]: %s", 
-					idTarea,b.getMessage());
+			Log.debug(
+					"Algo ha ocurrido intentando leer la tarea con id [%d]: %s",
+					idTarea, b.getMessage());
 			request.setAttribute("mensajeParaElUsuario", b.getMessage());
-			resultado="FRACASO";
+			resultado = "FRACASO";
 		}
-		
+
 		return resultado;
 	}
-	
+
 	@Override
 	public String toString() {
 		return getClass().getName();

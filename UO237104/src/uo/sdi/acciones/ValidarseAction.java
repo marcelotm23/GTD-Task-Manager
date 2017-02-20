@@ -15,60 +15,60 @@ public class ValidarseAction implements Accion {
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) {
-		
-		String resultado="EXITO";
-		String nombreUsuario=request.getParameter("nombreUsuario");
-		String password=request.getParameter("password");
-		HttpSession session=request.getSession();
-		if (session.getAttribute("user")==null) {
+
+		String resultado = "EXITO";
+		String nombreUsuario = request.getParameter("nombreUsuario");
+		String password = request.getParameter("password");
+		HttpSession session = request.getSession();
+		if (session.getAttribute("user") == null) {
 			UserService userService = Services.getUserService();
-			User userByLogin=null;
+			User userByLogin = null;
 			try {
-				userByLogin = userService.findLoggableUser(nombreUsuario, 
+				userByLogin = userService.findLoggableUser(nombreUsuario,
 						password);
 			} catch (BusinessException b) {
 				session.invalidate();
-				Log.debug("Algo ha ocurrido intentando iniciar sesión [%s]: %s", 
-						nombreUsuario,b.getMessage());
+				Log.debug(
+						"Algo ha ocurrido intentando iniciar sesión [%s]: %s",
+						nombreUsuario, b.getMessage());
 				request.setAttribute("mensajeParaElUsuario", b.getMessage());
-				resultado="FRACASO";
+				resultado = "FRACASO";
 			}
-			if (userByLogin!=null) {
+			if (userByLogin != null) {
 				session.setAttribute("user", userByLogin);
-				int contador=Integer.parseInt((String)request.getServletContext()
-						.getAttribute("contador"));
-				request.getServletContext().setAttribute("contador", 
-						String.valueOf(contador+1));
+				int contador = Integer.parseInt((String) request
+						.getServletContext().getAttribute("contador"));
+				request.getServletContext().setAttribute("contador",
+						String.valueOf(contador + 1));
 				session.setAttribute("fechaInicioSesion", new java.util.Date());
-				Log.info("El usuario [%s] ha iniciado sesión",nombreUsuario);
-			}
-			else {
+				Log.info("El usuario [%s] ha iniciado sesión", nombreUsuario);
+			} else {
 				session.invalidate();
-				Log.info("El usuario [%s] no está registrado",nombreUsuario);
-				request.setAttribute("mensajeParaElUsuario", "El usuario ["+
-						nombreUsuario+"] no está registrado o la constraseña no "
-								+ "es la correcta");
-				resultado="FRACASO";
+				Log.info("El usuario [%s] no está registrado", nombreUsuario);
+				request.setAttribute("mensajeParaElUsuario", "El usuario ["
+						+ nombreUsuario
+						+ "] no está registrado o la constraseña no "
+						+ "es la correcta");
+				resultado = "FRACASO";
 			}
+		} else if (!nombreUsuario.equals(session.getAttribute("user"))) {
+			Log.info("Se ha intentado iniciar sesión como [%s] teniendo la "
+					+ "sesión iniciada como [%s]", nombreUsuario,
+					((User) session.getAttribute("user")).getLogin());
+			request.setAttribute("mensajeParaElUsuario",
+					"Se ha intentado iniciar sesión como [" + nombreUsuario
+							+ "] teniendo la sesión iniciada como ["
+							+ ((User) session.getAttribute("user")).getLogin()
+							+ "]");
+			session.invalidate();
+			resultado = "FRACASO";
 		}
-		else
-			if (!nombreUsuario.equals(session.getAttribute("user"))) {
-				Log.info("Se ha intentado iniciar sesión como [%s] teniendo la "
-						+ "sesión iniciada como [%s]",
-						nombreUsuario,((User)session.getAttribute("user")).getLogin());
-			request.setAttribute("mensajeParaElUsuario", 
-						"Se ha intentado iniciar sesión como ["+nombreUsuario+
-						"] teniendo la sesión iniciada como ["+
-						((User)session.getAttribute("user")).getLogin()+"]");
-				session.invalidate();
-				resultado="FRACASO";
-			}
 		return resultado;
 	}
-	
+
 	@Override
 	public String toString() {
 		return getClass().getName();
 	}
-	
+
 }

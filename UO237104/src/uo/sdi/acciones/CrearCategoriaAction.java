@@ -13,47 +13,47 @@ import uo.sdi.business.exception.BusinessException;
 import uo.sdi.dto.Category;
 import uo.sdi.dto.User;
 
-public class CrearCategoriaAction implements Accion{
+public class CrearCategoriaAction implements Accion {
 
 	@Override
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) {
-		String resultado="EXITO";
-		String nombreCategoria="";
-		
+		String resultado = "EXITO";
+		String nombreCategoria = "";
+
 		try {
-			HttpSession session=request.getSession();
-			User user=(User) session.getAttribute("user");
-			nombreCategoria=request.getParameter("nombreCategoria");
+			HttpSession session = request.getSession();
+			User user = (User) session.getAttribute("user");
+			nombreCategoria = request.getParameter("nombreCategoria");
 			TaskService taskService = Services.getTaskService();
-			List<Category> listaCategorias=null;
-			if(nombreCategoria.compareTo("")==0){
-				throw new BusinessException("El nombre de la nueva categoría no "
-						+ "puede ser cadena vacía.");
-			}else{
-				Category newCategory=new Category();
+			List<Category> listaCategorias = null;
+			if (nombreCategoria.compareTo("") == 0) {
+				throw new BusinessException(
+						"El nombre de la nueva categoría no "
+								+ "puede ser cadena vacía.");
+			} else {
+				Category newCategory = new Category();
 				newCategory.setName(nombreCategoria);
 				newCategory.setUserId(user.getId());
 				taskService.createCategory(newCategory);
-				Log.debug("La categoría : [%s]", 
-						nombreCategoria);
-				listaCategorias = taskService.findCategoriesByUserId(user.getId());
+				Log.debug("La categoría : [%s]", nombreCategoria);
+				listaCategorias = taskService.findCategoriesByUserId(user
+						.getId());
 				session.setAttribute("listaCategorias", listaCategorias);
 			}
-			
-			
-			
+
 		} catch (BusinessException b) {
-			resultado="FRACASO";
-			Log.debug("La categoría : [%s] no se añadido correctamente por :[%s]", 
-					nombreCategoria, b.getMessage());
-			request.setAttribute("mensajeParaElUsuario", "La categoría : ["+
-					nombreCategoria+"] no se añadido correctamente. Esta no puede ser "
-							+ "cadena vacía");
+			resultado = "FRACASO";
+			Log.debug("La categoría : [%s] no se añadido correctamente por "
+					+ ":[%s]", nombreCategoria, b.getMessage());
+			request.setAttribute("mensajeParaElUsuario", "La categoría : ["
+					+ nombreCategoria + "] no se añadido correctamente. "
+					+ "Esta no puede ser cadena vacía");
 		}
 		return resultado;
-		
+
 	}
+
 	@Override
 	public String toString() {
 		return getClass().getName();

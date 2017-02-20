@@ -10,7 +10,8 @@ import uo.sdi.business.exception.BusinessException;
 
 public class Checks {
 
-	private static final String PASSWORD_PATTERN = "(^(?=.*[0-9])(?=.*[a-zA-zñÑ]).{8,})";
+	private static final String PASSWORD_PATTERN = 
+			"(^(?=.*[0-9])(?=.*[a-zA-zñÑ]).{8,})";
 
 	public static boolean isValidEmailAddress(String email)
 			throws BusinessException {
@@ -34,7 +35,7 @@ public class Checks {
 		if (!result) {
 			throw new BusinessException(
 					"ERROR: La constraseña debe tener al menos 8 carácteres, "
-					+ "contener letras y números.");
+							+ "contener letras y números.");
 		}
 		return result;
 	}

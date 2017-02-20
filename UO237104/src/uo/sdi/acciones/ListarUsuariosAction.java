@@ -18,21 +18,21 @@ public class ListarUsuariosAction implements Accion {
 	public String execute(HttpServletRequest request,
 			HttpServletResponse response) {
 		String resultado = "EXITO";
-		
+
 		List<User> usuarios;
-		
+
 		try {
 			HttpSession session = request.getSession();
 			AdminService as = Services.getAdminService();
 			usuarios = as.findAllUsers();
 			session.setAttribute("listaUsuarios", usuarios);
-			Log.debug("Obtenida lista de usuarios conteniendo [%d] usuarios", 
+			Log.debug("Obtenida lista de usuarios conteniendo [%d] usuarios",
 					usuarios.size());
 
 		} catch (BusinessException b) {
 			Log.debug("Algo ha ocurrido obteniendo lista de tareas: %s",
 					b.getMessage());
-			resultado="FRACASO";
+			resultado = "FRACASO";
 		}
 		return resultado;
 	}
