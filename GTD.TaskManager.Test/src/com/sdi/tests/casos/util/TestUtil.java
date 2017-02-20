@@ -44,4 +44,10 @@ public class TestUtil {
     	user.setTextField("password", PASSWORD);
     	user.submit(); 
 	}
+	public static void clickMostrarTareas(WebTester user){
+		user.assertTitleEquals("TaskManager - Página principal del usuario");
+		user.assertLinkPresent("filtrarTareas_link_id");
+		user.clickLink("filtrarTareas_link_id");
+	}
+	
 }

@@ -32,7 +32,7 @@ public class EditarTareaAction implements Accion{
 		Task task = ((Task) session.getAttribute("task"));
 		Task taskClone = Cloner.clone(task);
 
-		//Hacer excepciones
+		
 		try {
 			taskClone.setTitle(titulo);
 			taskClone.setComments(comentarios);
