@@ -10,7 +10,7 @@
 	<h1>Crear nueva cuenta de usuario</h1>
 	<br />
 	
-	<form action="crearCuenta" method="POST">
+	<form name=crearCuenta_form action="crearCuenta" method="POST">
 		<table>
 			<tr> 
 	    		<td align="right">Identificador de usuario:</td>
@@ -28,9 +28,11 @@
 			</tr>
 			<tr>
 				<td>Repita la contraseña:</td>
-				<td id="contrasenaAgain"><input type="password"
-					name="contrasenaAgain" size="20" /><input type="submit"
-					value="Crear"></td>
+				<td id="contrasenaAgain">
+					<input type="password"
+					name="contrasenaAgain" size="20" />
+					<input type="submit" value="Crear">
+				</td>
 			</tr>
 			
 		</table>

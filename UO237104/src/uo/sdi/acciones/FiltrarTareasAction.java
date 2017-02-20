@@ -32,8 +32,8 @@ public class FiltrarTareasAction implements Accion{
 			
 			String idOpcion=request.getParameter("idOpcion");
 			if(idOpcion==null){idOpcion="inbox";}
-			boolean mostrarFinalizadas=(request.getParameter("cb_mostrarFinalizadas")
-					!= null) ;
+			boolean mostrarFinalizadas=
+				(request.getParameter("cb_mostrarFinalizadas")!= null) ;
 			if(idOpcion.compareTo("inbox")==0){
 				listaTareas=taskService.findInboxTasksByUserId(user.getId());
 				if (mostrarFinalizadas) {
@@ -70,6 +70,11 @@ public class FiltrarTareasAction implements Accion{
 			resultado="FRACASO";
 		}
 		return resultado;
+	}
+	
+	@Override
+	public String toString() {
+		return getClass().getName();
 	}
 
 }

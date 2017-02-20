@@ -16,7 +16,7 @@ div#filtro {
 </style>
 <script>
 function cambiarNombreCategoria(id) {
-    var categoryName = prompt("Introduzca el nuevo nombre para esta categoría", "Harry Potter");
+    var categoryName = prompt("Introduzca el nuevo nombre para esta categoría", "Categoría "+id);
     if (categoryName != null) {
         document.getElementById("cambiarNombreCategoria"+id).href =
         "cambiarNombreCategoria?idCategoria="+id+"&nombreCategoria=\""+categoryName+"\"";
