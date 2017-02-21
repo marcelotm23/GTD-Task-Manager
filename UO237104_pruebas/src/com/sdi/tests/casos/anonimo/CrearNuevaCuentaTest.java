@@ -86,10 +86,10 @@ public class CrearNuevaCuentaTest {
 		nuevoUser.submit();
 		nuevoUser.assertTextPresent("The login must be at least 3 chars long");
 		//Nombre de usuario existente
-		nuevoUser.setTextField("nombreUsuario", "marcelo");
-		nuevoUser.setTextField("email", "marcelo@marcelo.com");
-		nuevoUser.setTextField("contrasena", "marcelo123");
-		nuevoUser.setTextField("contrasenaAgain", "marcelo123");
+		nuevoUser.setTextField("nombreUsuario", "administrador1");
+		nuevoUser.setTextField("email", "me@system.gtd");
+		nuevoUser.setTextField("contrasena", "administrador1");
+		nuevoUser.setTextField("contrasenaAgain", "administrador1");
 		nuevoUser.submit();
 		nuevoUser.assertTextPresent("The login is already used");
 	}

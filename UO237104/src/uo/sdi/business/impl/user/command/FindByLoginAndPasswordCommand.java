@@ -8,7 +8,7 @@ public class FindByLoginAndPasswordCommand implements Command<User> {
 
 	@Override
 	public User execute() throws BusinessException {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

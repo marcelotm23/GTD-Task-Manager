@@ -38,8 +38,8 @@ public class EliminarUsuarioTest {
 		nuevoUser.assertTextPresent("Se ha registrado correctamente. Puede proceder a logearse.");
 		
 		admin.beginAt("/");
-		admin.setTextField("nombreUsuario", "admin");
-		admin.setTextField("password", "admin123");
+		admin.setTextField("nombreUsuario", "administrador1");
+		admin.setTextField("password", "administrador1");
 		admin.submit();
 		admin.assertTitleEquals("TaskManager - Página principal del usuario");
 		admin.assertLinkPresent("listarUsuarios_link_id");
